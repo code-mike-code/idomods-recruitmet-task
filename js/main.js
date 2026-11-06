@@ -92,4 +92,87 @@ function initHeader() {
   desktop.addEventListener('change', () => setPanel(false));
 }
 
+function initHero() {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+
+  const slides = [...hero.querySelectorAll('.hero__slide')];
+  const bars = [...hero.querySelectorAll('.hero__bar')];
+  const pauseButton = hero.querySelector('.hero__pause');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  // Temporary holds (focus, hover on controls) never override the user's pause choice.
+  const holds = new Set();
+  let current = 0;
+  let isUserPaused = reducedMotion.matches;
+
+  const syncPaused = () => {
+    hero.classList.toggle('hero--paused', isUserPaused || holds.size > 0);
+    hero.classList.toggle('hero--stopped', isUserPaused);
+    pauseButton.setAttribute(
+      'aria-label',
+      isUserPaused ? 'Wznów automatyczną zmianę slajdów' : 'Zatrzymaj automatyczną zmianę slajdów',
+    );
+  };
+
+  const showSlide = (index) => {
+    const next = (index + slides.length) % slides.length;
+
+    slides.forEach((slide, slideIndex) => {
+      const isActive = slideIndex === next;
+      slide.classList.toggle('hero__slide--active', isActive);
+      slide.classList.toggle('hero__slide--zoom', isActive);
+      if (isActive) slide.removeAttribute('aria-hidden');
+      else slide.setAttribute('aria-hidden', 'true');
+    });
+    bars.forEach((bar, barIndex) => {
+      bar.classList.toggle('hero__bar--active', barIndex === next);
+    });
+
+    current = next;
+  };
+
+  hero.querySelector('.hero__arrow--prev').addEventListener('click', () => showSlide(current - 1));
+  hero.querySelector('.hero__arrow--next').addEventListener('click', () => showSlide(current + 1));
+
+  pauseButton.addEventListener('click', () => {
+    isUserPaused = !isUserPaused;
+    syncPaused();
+  });
+
+  // The progress animation is the autoplay timer, so the bar and the slide stay in sync.
+  bars.forEach((bar) => {
+    bar.addEventListener('animationend', () => showSlide(current + 1));
+  });
+
+  hero.addEventListener('focusin', (event) => {
+    if (!event.target.matches(':focus-visible')) return;
+    holds.add('focus');
+    syncPaused();
+  });
+
+  hero.addEventListener('focusout', (event) => {
+    if (hero.contains(event.relatedTarget)) return;
+    holds.delete('focus');
+    syncPaused();
+  });
+
+  // Holding on the whole section would stop autoplay under a resting cursor.
+  hero.querySelectorAll('a, button').forEach((control) => {
+    control.addEventListener('pointerenter', (event) => {
+      if (event.pointerType !== 'mouse') return;
+      holds.add('hover');
+      syncPaused();
+    });
+
+    control.addEventListener('pointerleave', () => {
+      holds.delete('hover');
+      syncPaused();
+    });
+  });
+
+  syncPaused();
+}
+
 initHeader();
+initHero();

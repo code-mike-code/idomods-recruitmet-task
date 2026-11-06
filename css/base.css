@@ -93,6 +93,11 @@ a {
   text-decoration: none;
 }
 
+/* Keeps the hidden attribute working over the display rules above */
+[hidden] {
+  display: none;
+}
+
 /* Base typography */
 body {
   font-family: var(--font-family-base);
@@ -126,6 +131,31 @@ h3 {
   max-width: calc(var(--container-max) + 2 * var(--container-gutter));
   margin-inline: auto;
   padding-inline: var(--container-gutter);
+}
+
+/* Buttons */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-16) var(--space-24);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-base);
+  text-align: center;
+  white-space: nowrap;
+  border-radius: var(--radius-pill);
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+
+/* Hover is an assumption, Figma has no state for this button */
+.button--accent {
+  color: var(--color-text);
+  background: var(--color-accent);
+}
+
+.button--accent:hover {
+  transform: translateY(calc(-1 * var(--space-2)));
 }
 
 /* Accessibility helpers */
