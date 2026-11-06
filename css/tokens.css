@@ -1,0 +1,103 @@
+/*
+ * Design tokens from Figma (frame 1:505, guidelines frame 16:91).
+ * Figma has no variables, so values are read from layers.
+ *
+ * Breakpoints (assumption, Figma has desktop only). Custom properties do not
+ * work in media queries, so use these values directly with min-width:
+ *   tablet:  48rem (768px)
+ *   desktop: 75rem (1200px)
+ */
+
+:root {
+  /* Colors */
+  --color-accent: #f2bf25;
+  --color-ink: #101011;
+  --color-text: #1e1e1e;
+  --color-white: #fff;
+  --color-border: #e7e7e7;
+  --color-button-hover: #4a4a4a;
+  --color-track: rgb(231 231 231 / 50%);
+  --color-scrim-soft: rgb(16 16 17 / 20%);
+  --color-scrim: rgb(16 16 17 / 40%);
+  --color-tile-configurator: #72a3f3;
+  --color-tile-catalog: #fdf8eb;
+  --color-tile-smart: #e8e4df;
+
+  /* Typography */
+  --font-family-base: "Red Hat Display", system-ui, sans-serif;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  --font-size-caption: 0.75rem; /* 12px */
+  --font-size-small: 0.8125rem; /* 13px */
+  --font-size-body: 0.875rem; /* 14px */
+  --font-size-base: 1rem; /* 16px */
+  --font-size-title: 1.3125rem; /* 21px */
+  --font-size-heading: clamp(1.5rem, 1.318rem + 0.91vw, 2rem); /* 24-32px */
+  --font-size-display: clamp(2.25rem, 1.795rem + 2.27vw, 3.5rem); /* 36-56px */
+
+  --line-height-none: 1;
+  --line-height-tight: 1.1;
+  --line-height-base: 1.2;
+
+  /* Spacing */
+  --space-2: 0.125rem;
+  --space-3: 0.1875rem;
+  --space-4: 0.25rem;
+  --space-8: 0.5rem;
+  --space-9: 0.5625rem;
+  --space-11: 0.6875rem;
+  --space-12: 0.75rem;
+  --space-14: 0.875rem;
+  --space-16: 1rem;
+  --space-24: 1.5rem;
+  --space-32: 2rem;
+  --space-48: 3rem;
+  --space-64: 4rem;
+  --space-86: 5.375rem;
+  --space-96: 6rem;
+
+  /* Radii */
+  --radius-xs: 0.125rem;
+  --radius-sm: 0.25rem;
+  --radius-lg: 1.5rem;
+  --radius-pill: 6.25rem;
+
+  /* Sizes */
+  --size-control: 3rem; /* 48px circle buttons */
+  --size-icon-sm: 1rem;
+  --size-icon-md: 1.25rem;
+  --size-icon-lg: 1.5rem;
+  --size-icon-xl: 2rem;
+
+  /* Layout */
+  --container-max: 100rem; /* 1600px */
+  --container-gutter: var(--space-16);
+  --hero-max-height: 67.5rem; /* 1080px */
+  --tile-height: 32.375rem; /* 518px */
+
+  /* Motion */
+  --duration-fast: 200ms;
+  --duration-hover: 250ms;
+  --duration-zoom: 500ms;
+  --duration-fade: 600ms;
+  --duration-slide: 800ms;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: ease-out;
+
+  /* Focus (WCAG 2.4.7, assumption, not in Figma) */
+  --focus-width: 2px;
+  --focus-offset: 2px;
+  --focus-color: var(--color-ink);
+  --focus-halo: var(--color-white);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 1ms;
+    --duration-hover: 1ms;
+    --duration-zoom: 1ms;
+    --duration-fade: 1ms;
+    --duration-slide: 1ms;
+  }
+}
