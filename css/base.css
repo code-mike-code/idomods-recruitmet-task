@@ -158,6 +158,12 @@ h3 {
   transform: translateY(calc(-1 * var(--space-2)));
 }
 
+.button--dark {
+  color: var(--color-white);
+  background: var(--color-ink);
+  transition: background-color var(--duration-fast) var(--ease-standard);
+}
+
 /* Accessibility helpers */
 .visually-hidden {
   position: absolute;

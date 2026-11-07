@@ -84,6 +84,7 @@
   --hero-max-height: 67.5rem; /* 1080px */
   --tile-height: 32.375rem; /* 518px */
   --section-padding: clamp(3rem, 1.921rem + 4.61vw, 5.375rem); /* 48-86px, Figma gives 86px on desktop */
+  --tile-padding: clamp(1.5rem, 0.818rem + 2.91vw, 3rem); /* 24-48px, Figma gives 48px on desktop */
   --section-gap: clamp(1rem, 0.545rem + 1.94vw, 2rem); /* 16-32px, Figma gives 32px on desktop */
 
   /* Motion */
