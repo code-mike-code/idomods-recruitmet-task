@@ -17,6 +17,17 @@
 .hero__slides {
   position: absolute;
   inset: 0;
+  container-type: size;
+}
+
+/* A 16:9 box scaled like object-fit: cover, so every layer lines up with the photo */
+.hero__stage {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  width: max(100cqw, 100cqh * 16 / 9);
+  aspect-ratio: 16 / 9;
+  transform: translate(-50%, -50%);
 }
 
 .hero__slide {
@@ -48,10 +59,16 @@
 
 .hero__content {
   position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-32);
+  pointer-events: none; /* Lets clicks reach the lamps under the empty part of the row */
+}
+
+.hero__content a {
+  pointer-events: auto;
 }
 
 .hero__heading {
@@ -68,6 +85,193 @@
 .hero__title {
   font-size: var(--font-size-display);
   line-height: var(--line-height-none);
+}
+
+/* Lights: only opacity changes, so nothing repaints during the animation */
+.hero__dim {
+  position: absolute;
+  inset: 0;
+  background: var(--color-ink);
+  opacity: 0;
+  transition: opacity var(--duration-light) var(--ease-standard);
+}
+
+.hero--lit .hero__dim {
+  opacity: 0.72;
+}
+
+.hero__lamp {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero__lamp-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity var(--duration-light) var(--ease-standard);
+}
+
+.hero--lit .hero__lamp-image {
+  opacity: 1;
+}
+
+.hero__lamp--top .hero__lamp-image {
+  clip-path: polygon(39.5% 9%, 59.5% 9%, 59.5% 45.4%, 39.5% 45.4%);
+}
+
+.hero__lamp--left .hero__lamp-image {
+  clip-path: polygon(22% 40.8%, 43.5% 40.8%, 43.5% 76.4%, 22% 76.4%);
+}
+
+.hero__lamp--right .hero__lamp-image {
+  clip-path: polygon(60.4% 31%, 79.7% 31%, 79.7% 70%, 55.9% 70%, 55.9% 57.4%);
+}
+
+.hero__beam,
+.hero__glow {
+  position: absolute;
+  inset-block-start: var(--lens-y);
+  inset-inline-start: var(--lens-x);
+  opacity: 0;
+  transition: opacity var(--duration-fade) var(--ease-standard);
+}
+
+.hero__beam {
+  width: 55%;
+  aspect-ratio: 1;
+  background: conic-gradient(from 138deg at 50% 0, transparent, var(--color-light) 42deg, transparent 84deg);
+  mask-image: radial-gradient(circle at 50% 0, #000, transparent 70%);
+  transform: translateX(-50%) rotate(var(--beam-angle));
+  transform-origin: 50% 0;
+}
+
+.hero__glow {
+  width: 14%;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, var(--color-light-core), var(--color-light) 35%, transparent 70%);
+  transform: translate(-50%, -50%);
+}
+
+.hero__lamp--lit .hero__beam,
+.hero__lamp--lit .hero__glow {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero__lamp--lit .hero__beam,
+  .hero__lamp--lit .hero__glow {
+    animation: hero-flicker var(--duration-light) var(--ease-standard);
+  }
+}
+
+/* Two short flashes, well under the WCAG limit of three per second */
+@keyframes hero-flicker {
+  0% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 0.8;
+  }
+
+  40% {
+    opacity: 0.2;
+  }
+
+  65% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 0.6;
+  }
+}
+
+.hero__lamp--top {
+  --lens-x: 50.9%;
+  --lens-y: 32.6%;
+  --beam-angle: -25deg;
+}
+
+.hero__lamp--left {
+  --lens-x: 35.1%;
+  --lens-y: 63.6%;
+  --beam-angle: -25deg;
+}
+
+.hero__lamp--right {
+  --lens-x: 60.9%;
+  --lens-y: 62.2%;
+  --beam-angle: 25deg;
+}
+
+.hero__lamp-button {
+  position: absolute;
+  border-radius: var(--radius-pill);
+  pointer-events: auto;
+}
+
+.hero__lamp--top .hero__lamp-button {
+  inset: 10% 41% 55.5% 40%;
+}
+
+.hero__lamp--left .hero__lamp-button {
+  inset: 41% 56.8% 24.5% 22.6%;
+}
+
+.hero__lamp--right .hero__lamp-button {
+  inset: 31.3% 20.6% 30.7% 56.6%;
+}
+
+html:not(.js) .hero__lamp,
+html:not(.js) .hero__switch {
+  display: none;
+}
+
+/* Light switch, ribbed like the lamps */
+.hero__switch {
+  position: absolute;
+  inset-block-end: 5.5rem;
+  inset-inline-start: var(--container-gutter);
+  width: 5.25rem;
+  height: var(--size-control);
+  padding: var(--space-4);
+  background: var(--color-switch);
+  border: 1px solid var(--color-white);
+  border-radius: var(--radius-pill);
+}
+
+.hero__switch-knob {
+  display: block;
+  width: 2.375rem;
+  height: 100%;
+  background: repeating-linear-gradient(90deg, var(--color-switch-rib) 0 0.1875rem, var(--color-switch-rib-shade) 0.1875rem 0.3125rem);
+  border-radius: var(--radius-pill);
+  transition: transform var(--duration-hover) var(--ease-standard);
+}
+
+.hero__switch-led {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-end: var(--space-14);
+  width: var(--space-8);
+  height: var(--space-8);
+  background: var(--color-ink);
+  border-radius: var(--radius-pill);
+  transform: translateY(-50%);
+}
+
+.hero__switch[aria-checked="true"] .hero__switch-knob {
+  transform: translateX(2.25rem);
+}
+
+.hero__switch[aria-checked="true"] .hero__switch-led {
+  inset-inline: var(--space-14) auto;
+  background: var(--color-accent);
 }
 
 /* Controls */
@@ -215,7 +419,8 @@ html:not(.js) .hero__pause {
 }
 
 @media (min-width: 60rem) {
-  .hero__badge {
+  .hero__badge,
+  .hero__switch {
     inset-block-end: var(--space-16);
   }
 }
@@ -253,5 +458,10 @@ html:not(.js) .hero__pause {
   .hero__badge {
     inset-block-end: var(--space-32);
     inset-inline-end: var(--space-72);
+  }
+
+  .hero__switch {
+    inset-block-end: var(--space-32);
+    inset-inline-start: calc((100% - var(--container-max)) / 2);
   }
 }

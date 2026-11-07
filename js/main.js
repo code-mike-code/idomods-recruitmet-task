@@ -99,6 +99,8 @@ function initHero() {
   const slides = [...hero.querySelectorAll('.hero__slide')];
   const bars = [...hero.querySelectorAll('.hero__bar')];
   const pauseButton = hero.querySelector('.hero__pause');
+  const lightSwitch = hero.querySelector('.hero__switch');
+  const lamps = [...hero.querySelectorAll('.hero__lamp')];
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   // Temporary holds (focus, hover on controls) never override the user's pause choice.
@@ -115,8 +117,28 @@ function initHero() {
     );
   };
 
+  const isLit = (lamp) => lamp.classList.contains('hero__lamp--lit');
+
+  const setLamp = (lamp, isOn) => {
+    lamp.classList.toggle('hero__lamp--lit', isOn);
+    lamp.querySelector('.hero__lamp-button').setAttribute('aria-pressed', String(isOn));
+  };
+
+  const syncLights = () => {
+    const anyLit = lamps.some(isLit);
+    hero.classList.toggle('hero--lit', anyLit);
+    lightSwitch.setAttribute('aria-checked', String(anyLit));
+    lightSwitch.setAttribute('aria-label', anyLit ? 'Zgaś lampy' : 'Zapal lampy');
+    if (anyLit) holds.add('lights');
+    else holds.delete('lights');
+    syncPaused();
+  };
+
   const showSlide = (index) => {
     const next = (index + slides.length) % slides.length;
+
+    lamps.forEach((lamp) => setLamp(lamp, false));
+    syncLights();
 
     slides.forEach((slide, slideIndex) => {
       const isActive = slideIndex === next;
@@ -134,6 +156,26 @@ function initHero() {
 
   hero.querySelector('.hero__arrow--prev').addEventListener('click', () => showSlide(current - 1));
   hero.querySelector('.hero__arrow--next').addEventListener('click', () => showSlide(current + 1));
+
+  // Lamps exist only on the first slide, so using them from another slide returns to it.
+  const showLampSlide = () => {
+    if (current !== 0) showSlide(0);
+  };
+
+  lightSwitch.addEventListener('click', () => {
+    const shouldLight = !lamps.some(isLit);
+    if (shouldLight) showLampSlide();
+    lamps.forEach((lamp) => setLamp(lamp, shouldLight));
+    syncLights();
+  });
+
+  lamps.forEach((lamp) => {
+    lamp.querySelector('.hero__lamp-button').addEventListener('click', () => {
+      showLampSlide();
+      setLamp(lamp, !isLit(lamp));
+      syncLights();
+    });
+  });
 
   pauseButton.addEventListener('click', () => {
     isUserPaused = !isUserPaused;

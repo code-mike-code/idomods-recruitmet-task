@@ -124,9 +124,10 @@
   <main id="main" tabindex="-1">
     <section class="hero" aria-labelledby="hero-title" aria-roledescription="karuzela">
       <div class="hero__slides">
+        <div class="hero__stage">
         <picture class="hero__slide hero__slide--active">
-          <source type="image/avif" sizes="max(100vw, 178vh)" srcset="assets/images/hero-slide-1-768.avif 768w, assets/images/hero-slide-1-1280.avif 1280w, assets/images/hero-slide-1-1920.avif 1920w, assets/images/hero-slide-1-2752.avif 2752w">
-          <source type="image/webp" sizes="max(100vw, 178vh)" srcset="assets/images/hero-slide-1-768.webp 768w, assets/images/hero-slide-1-1280.webp 1280w, assets/images/hero-slide-1-1920.webp 1920w, assets/images/hero-slide-1-2752.webp 2752w">
+          <source type="image/avif" sizes="max(100vw, 178vh)" srcset="assets/images/hero-slide-1-768.avif 768w, assets/images/hero-slide-1-1280.avif 1280w, assets/images/hero-slide-1-1920.avif 1920w, assets/images/hero-slide-1-2732.avif 2732w">
+          <source type="image/webp" sizes="max(100vw, 178vh)" srcset="assets/images/hero-slide-1-768.webp 768w, assets/images/hero-slide-1-1280.webp 1280w, assets/images/hero-slide-1-1920.webp 1920w, assets/images/hero-slide-1-2732.webp 2732w">
           <img class="hero__image" src="assets/images/hero-slide-1-1920.webp" width="1920" height="1080" alt="Trzy lampy SOLLUX w kolorach terakoty, beżu i oliwki unoszące się nad skałą" fetchpriority="high">
         </picture>
         <picture class="hero__slide" aria-hidden="true">
@@ -134,6 +135,28 @@
           <source type="image/webp" sizes="max(100vw, 178vh)" srcset="assets/images/hero-slide-2-768.webp 768w, assets/images/hero-slide-2-1280.webp 1280w, assets/images/hero-slide-2-1920.webp 1920w">
           <img class="hero__image" src="assets/images/hero-slide-2-1920.webp" width="1920" height="1080" alt="Przedpokój z niebieską zabudową i sufitowymi lampami SOLLUX" loading="lazy" fetchpriority="low">
         </picture>
+
+        <div class="hero__dim"></div>
+
+          <div class="hero__lamp hero__lamp--top">
+            <span class="hero__beam"></span>
+            <img class="hero__lamp-image" src="assets/images/hero-lamps-1920.webp" srcset="assets/images/hero-lamps-768.webp 768w, assets/images/hero-lamps-1280.webp 1280w, assets/images/hero-lamps-1920.webp 1920w" sizes="max(100vw, 178vh)" width="1920" height="1080" alt="" loading="lazy" fetchpriority="low">
+            <span class="hero__glow"></span>
+            <button class="hero__lamp-button" type="button" aria-pressed="false" aria-label="Lampa beżowa"></button>
+          </div>
+          <div class="hero__lamp hero__lamp--left">
+            <span class="hero__beam"></span>
+            <img class="hero__lamp-image" src="assets/images/hero-lamps-1920.webp" srcset="assets/images/hero-lamps-768.webp 768w, assets/images/hero-lamps-1280.webp 1280w, assets/images/hero-lamps-1920.webp 1920w" sizes="max(100vw, 178vh)" width="1920" height="1080" alt="" loading="lazy" fetchpriority="low">
+            <span class="hero__glow"></span>
+            <button class="hero__lamp-button" type="button" aria-pressed="false" aria-label="Lampa terakotowa"></button>
+          </div>
+          <div class="hero__lamp hero__lamp--right">
+            <span class="hero__beam"></span>
+            <img class="hero__lamp-image" src="assets/images/hero-lamps-1920.webp" srcset="assets/images/hero-lamps-768.webp 768w, assets/images/hero-lamps-1280.webp 1280w, assets/images/hero-lamps-1920.webp 1920w" sizes="max(100vw, 178vh)" width="1920" height="1080" alt="" loading="lazy" fetchpriority="low">
+            <span class="hero__glow"></span>
+            <button class="hero__lamp-button" type="button" aria-pressed="false" aria-label="Lampa oliwkowa"></button>
+          </div>
+        </div>
       </div>
 
       <div class="hero__content container">
@@ -143,6 +166,11 @@
         </div>
         <a class="button button--accent" href="#">Sprawdź bestsellery</a>
       </div>
+
+      <button class="hero__switch" type="button" role="switch" aria-checked="false" aria-label="Zapal lampy">
+        <span class="hero__switch-knob"></span>
+        <span class="hero__switch-led"></span>
+      </button>
 
       <button class="hero__arrow hero__arrow--prev" type="button" aria-label="Poprzedni slajd">
         <img src="assets/icons/arrow-left.svg" width="24" height="24" alt="">

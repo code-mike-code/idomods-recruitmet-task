@@ -23,6 +23,13 @@
   --color-tile-catalog: #fdf8eb;
   --color-tile-smart: #e8e4df;
 
+  /* Hero lights (assumption, not in Figma; olive and sand come from the lamps) */
+  --color-light: rgb(242 191 37 / 50%);
+  --color-light-core: rgb(255 240 200 / 95%);
+  --color-switch: #56663e;
+  --color-switch-rib: #e9d1b4;
+  --color-switch-rib-shade: #b49f82;
+
   /* Typography */
   --font-family-base: "Red Hat Display", system-ui, sans-serif;
   --font-weight-medium: 500;
@@ -83,6 +90,7 @@
   --duration-zoom: 500ms;
   --duration-fade: 600ms;
   --duration-slide: 800ms;
+  --duration-light: 700ms;
   --duration-slider-interval: 3s;
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-out: ease-out;
@@ -101,5 +109,6 @@
     --duration-zoom: 1ms;
     --duration-fade: 1ms;
     --duration-slide: 1ms;
+    --duration-light: 1ms;
   }
 }
