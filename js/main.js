@@ -216,5 +216,23 @@ function initHero() {
   syncPaused();
 }
 
+// WebGL code loads only when the section gets close, so it never slows the first paint.
+function initShaderSection() {
+  const section = document.querySelector('.shader-cta');
+  if (!section) return;
+
+  const observer = new IntersectionObserver(
+    async ([entry]) => {
+      if (!entry.isIntersecting) return;
+      observer.disconnect();
+      const { initShaderCta } = await import('./modules/shader.js');
+      initShaderCta(section);
+    },
+    { rootMargin: '50% 0px' },
+  );
+  observer.observe(section);
+}
+
 initHeader();
 initHero();
+initShaderSection();

@@ -41,6 +41,9 @@
   --font-size-base: 1rem; /* 16px */
   --font-size-title: 1.3125rem; /* 21px */
   --font-size-heading: clamp(1.5rem, 1.318rem + 0.91vw, 2rem); /* 24-32px */
+  --font-size-cta: clamp(2rem, 1.699rem + 1.284vw, 3.24rem); /* 32-52px, first title line is 640px wide at 1920px */
+  --font-size-cta-button: clamp(0.875rem, 0.855rem + 0.084vw, 0.956rem); /* 14-15.3px, button is 112px wide at 1920px */
+  --font-size-cta-note: clamp(0.875rem, 0.82rem + 0.233vw, 1.1rem); /* 14-17.6px, first note line is 220px wide at 1920px */
   --font-size-display: clamp(2.25rem, 1.795rem + 2.27vw, 3.5rem); /* 36-56px */
 
   --line-height-none: 1;

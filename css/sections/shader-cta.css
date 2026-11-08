@@ -1,0 +1,99 @@
+/*
+ * Figma holds this section as a raster. The title size comes from the first line,
+ * which is 640px wide at 1920px and breaks after "na".
+ * The gradient is the fallback for no JS, no WebGL and a lost GL context.
+ */
+.shader-cta {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  min-height: max(30rem, 43.5vw); /* 835 / 1920 from Figma */
+  padding-block: var(--space-96);
+  overflow: clip;
+  color: var(--color-white);
+  text-align: center;
+  background:
+    linear-gradient(to top, var(--color-accent), transparent 75%),
+    var(--color-ink);
+}
+
+.shader-cta__canvas {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity var(--duration-fade) var(--ease-standard);
+}
+
+.shader-cta--ready .shader-cta__canvas {
+  opacity: 1;
+}
+
+.shader-cta__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-32);
+}
+
+.shader-cta__title {
+  max-width: 12.5em;
+  font-size: var(--font-size-cta);
+  line-height: var(--line-height-tight);
+}
+
+.shader-cta__action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-16);
+}
+
+/* Padding in em keeps the button proportions at every font size */
+.shader-cta__button {
+  padding: 1em 1.5em;
+  font-size: var(--font-size-cta-button);
+}
+
+.shader-cta__note {
+  max-width: 13em;
+  font-size: var(--font-size-cta-note);
+  line-height: var(--line-height-base);
+  text-wrap: balance;
+}
+
+/* Keyboard only, and only when there is an animation to stop */
+.shader-cta__pause {
+  position: absolute;
+  inset-block-end: var(--space-16);
+  inset-inline-end: var(--space-16);
+  display: none;
+  place-items: center;
+  width: var(--size-control);
+  height: var(--size-control);
+  background: var(--color-scrim-soft);
+  border-radius: var(--radius-pill);
+}
+
+.shader-cta--ready .shader-cta__pause {
+  display: grid;
+}
+
+.shader-cta__icon--play,
+.shader-cta--stopped .shader-cta__icon--pause {
+  display: none;
+}
+
+.shader-cta--stopped .shader-cta__icon--play {
+  display: block;
+}
+
+/* From here the first line fits up to "na", and balancing would pull that word down */
+@media (min-width: 48rem) {
+  .shader-cta__title {
+    text-wrap: wrap;
+  }
+}

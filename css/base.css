@@ -177,6 +177,11 @@ h3 {
   border: 0;
 }
 
+/* Controls outside the design: in the DOM and shown on keyboard focus only */
+.visually-hidden-focusable:not(:focus-visible) {
+  clip-path: inset(50%);
+}
+
 .skip-link {
   position: absolute;
   top: var(--space-8);

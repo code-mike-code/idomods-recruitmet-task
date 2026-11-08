@@ -182,7 +182,7 @@
       <div class="hero__progress">
         <span class="hero__bar hero__bar--active"></span>
         <span class="hero__bar"></span>
-        <button class="hero__pause" type="button" aria-label="Zatrzymaj automatyczną zmianę slajdów">
+        <button class="hero__pause visually-hidden-focusable" type="button" aria-label="Zatrzymaj automatyczną zmianę slajdów">
           <svg class="hero__pause-icon hero__pause-icon--pause" width="16" height="16" aria-hidden="true"><use href="#icon-pause"></use></svg>
           <svg class="hero__pause-icon hero__pause-icon--play" width="16" height="16" aria-hidden="true"><use href="#icon-play"></use></svg>
         </button>
@@ -290,6 +290,21 @@
         </article>
         </div>
       </div>
+    </section>
+
+    <section class="shader-cta" aria-labelledby="shader-cta-title">
+      <canvas class="shader-cta__canvas" aria-hidden="true"></canvas>
+      <div class="container shader-cta__content">
+        <h2 class="shader-cta__title" id="shader-cta-title">Twoje wnętrze zasługuje na wyjątkowe światło</h2>
+        <div class="shader-cta__action">
+          <a class="button button--accent shader-cta__button" href="#">Kup teraz</a>
+          <p class="shader-cta__note">Od 119 zł na oficjalnej stronie producenta SOLLUX</p>
+        </div>
+      </div>
+      <button class="shader-cta__pause visually-hidden-focusable" type="button" aria-label="Zatrzymaj animację tła">
+        <svg class="shader-cta__icon--pause" width="16" height="16" aria-hidden="true"><use href="#icon-pause"></use></svg>
+        <svg class="shader-cta__icon--play" width="16" height="16" aria-hidden="true"><use href="#icon-play"></use></svg>
+      </button>
     </section>
   </main>
 
