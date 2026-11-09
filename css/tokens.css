@@ -62,6 +62,7 @@
   --space-16: 1rem;
   --space-24: 1.5rem;
   --space-32: 2rem;
+  --space-40: 2.5rem;
   --space-48: 3rem;
   --space-64: 4rem;
   --space-72: 4.5rem;
@@ -88,6 +89,9 @@
   --tile-height: 32.375rem; /* 518px */
   --section-padding: clamp(3rem, 1.921rem + 4.61vw, 5.375rem); /* 48-86px, Figma gives 86px on desktop */
   --tile-padding: clamp(1.5rem, 0.818rem + 2.91vw, 3rem); /* 24-48px, Figma gives 48px on desktop */
+  --footer-padding-top: clamp(3rem, 2.272rem + 3.107vw, 6rem); /* 48-96px */
+  --footer-padding-bottom: clamp(2.5rem, 2.136rem + 1.553vw, 4rem); /* 40-64px */
+  --footer-nav-gap: clamp(2.5rem, 7.778vw - 3.333rem, 6rem); /* 40px at 1200px, 96px at 1920px */
   --section-gap: clamp(1rem, 0.545rem + 1.94vw, 2rem); /* 16-32px, Figma gives 32px on desktop */
 
   /* Motion */

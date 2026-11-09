@@ -16,3 +16,9 @@ Elementy potrzebne tylko dla dostępności, których nie ma w projekcie, są w s
 Przyciski pauzy pokazują się po fokusie, bo osoba korzystająca z klawiatury musi widzieć, gdzie jest. Klasa `.visually-hidden-focusable` przycina je, a nie usuwa, więc zostają dostępne dla czytników ekranu.
 
 Przy `prefers-reduced-motion: reduce` animacja tła startuje zatrzymana.
+
+## Decyzje i założenia
+
+- Figma ma tylko widok 1920 px. Układ stopki na mniejszych ekranach (kolumny linków 2 → 3 → 5, panele jeden pod drugim) jest założeniem.
+- „Zmień ustawienia ciasteczek” to zwykły link, bo strona nie ma banera cookies. Po jego dodaniu ten element powinien stać się przyciskiem `<button>`, który otwiera ustawienia.
+- Poprawione literówki z projektu: „Wpsółpraca” → „Współpraca”, „Dla Architekta” → „Dla architekta”, „(Pn - Pt 7:00 - 15:00)” → „(pn.–pt. 7:00–15:00)”.
