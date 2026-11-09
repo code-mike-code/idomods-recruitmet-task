@@ -1,6 +1,6 @@
 // Motion is built only from whole sine cycles per loop, so the last frame equals
 // the first one and there is no visible cut. Figma asks for 20-30s and a wavy move.
-const LOOP_DURATION = 28000;
+const LOOP_DURATION = 30000;
 
 // Soft shapes need no sharpness, so half resolution keeps the GPU load low.
 const RENDER_SCALE = 0.5;
@@ -33,8 +33,8 @@ const FRAGMENT_SHADER = `
   float shadow(vec2 point, float period, float width, float seed) {
     float time = TAU * uProgress;
     float position = point.x + point.y * SHADOW_SLANT + seed;
-    position += 0.45 * sin(time + seed) + 0.12 * sin(2.0 * time + seed * 1.7);
-    position += 0.05 * sin(point.y * 2.4 + time + seed);
+    position += 0.2 * sin(time + seed) + 0.05 * sin(2.0 * time + seed * 1.7);
+    position += 0.03 * sin(point.y * 2.4 + time + seed);
     float cell = fract(position / period) - 0.5;
     return 1.0 - smoothstep(width, width + SHADOW_SOFTNESS, abs(cell) * period);
   }
