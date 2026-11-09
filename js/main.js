@@ -128,7 +128,6 @@ function initHero() {
     const anyLit = lamps.some(isLit);
     hero.classList.toggle('hero--lit', anyLit);
     lightSwitch.setAttribute('aria-checked', String(anyLit));
-    lightSwitch.setAttribute('aria-label', anyLit ? 'Zgaś lampy' : 'Zapal lampy');
     if (anyLit) holds.add('lights');
     else holds.delete('lights');
     syncPaused();

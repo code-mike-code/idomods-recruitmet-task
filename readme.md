@@ -19,6 +19,7 @@ Przy `prefers-reduced-motion: reduce` animacja tła startuje zatrzymana.
 
 ## Decyzje i założenia
 
+- Lampy w hero (Figma prosi o własną animację): kliknięcie lampy albo przełącznika ON/OFF zapala białe światło od razu, bez płynnego przejścia, a reszta hero się przyciemnia. Przełącznik ma ikonę żarówki i napis stanu. Jest to element ARIA `switch` z nazwą „Światło lamp”, więc czytnik ekranu odczytuje go jako włączony albo wyłączony.
 - Figma ma tylko widok 1920 px. Układ stopki na mniejszych ekranach (kolumny linków 2 → 3 → 5, panele jeden pod drugim) jest założeniem.
 - „Zmień ustawienia ciasteczek” to zwykły link, bo strona nie ma banera cookies. Po jego dodaniu ten element powinien stać się przyciskiem `<button>`, który otwiera ustawienia.
 - Poprawione literówki z projektu: „Wpsółpraca” → „Współpraca”, „Dla Architekta” → „Dla architekta”, „(Pn - Pt 7:00 - 15:00)” → „(pn.–pt. 7:00–15:00)”.

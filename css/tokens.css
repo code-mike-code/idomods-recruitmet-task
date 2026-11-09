@@ -18,17 +18,18 @@
   --color-button-hover: #4a4a4a;
   --color-track: rgb(231 231 231 / 50%);
   --color-scrim-soft: rgb(16 16 17 / 20%);
+  --color-switch-track: rgb(16 16 17 / 80%);
   --color-scrim: rgb(16 16 17 / 40%);
   --color-tile-configurator: #72a3f3;
   --color-tile-catalog: #fdf8eb;
   --color-tile-smart: #e8e4df;
 
-  /* Hero lights (assumption, not in Figma; olive and sand come from the lamps) */
-  --color-light: rgb(242 191 37 / 50%);
-  --color-light-core: rgb(255 240 200 / 95%);
-  --color-switch: #56663e;
-  --color-switch-rib: #e9d1b4;
-  --color-switch-rib-shade: #b49f82;
+  /* Hero lights (assumption, not in Figma): white light */
+  --color-light: rgb(255 255 255 / 45%);
+  --color-light-core: #f4f9ff;
+  --color-light-bulb: #fff6d6;
+  --color-switch-knob: rgb(255 255 255 / 20%);
+  --shadow-switch-glow: 0 0 1rem rgb(255 255 255 / 60%);
 
   /* Typography */
   --font-family-base: "Red Hat Display", system-ui, sans-serif;
@@ -100,7 +101,6 @@
   --duration-zoom: 500ms;
   --duration-fade: 600ms;
   --duration-slide: 800ms;
-  --duration-light: 700ms;
   --duration-slider-interval: 3s;
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-out: ease-out;
@@ -119,6 +119,5 @@
     --duration-zoom: 1ms;
     --duration-fade: 1ms;
     --duration-slide: 1ms;
-    --duration-light: 1ms;
   }
 }
