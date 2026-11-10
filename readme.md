@@ -2,6 +2,16 @@
 
 Zadanie rekrutacyjne IdoMods: landing page z Figmy w czystym HTML, CSS i JS, bez zależności.
 
+## Uruchomienie
+
+Projekt to statyczny HTML/CSS/JS bez zależności i bez budowania. Moduły ES nie działają z `file://`, więc stronę trzeba otworzyć przez dowolny serwer statyczny:
+
+```bash
+python3 -m http.server 8080
+```
+
+Potem otwórz http://localhost:8080. Alternatywnie: `npx serve` albo rozszerzenie Live Server w VS Code.
+
 ## Dostępność
 
 Elementy potrzebne tylko dla dostępności, których nie ma w projekcie, są w strukturze strony, ale ukryte w widoku:
